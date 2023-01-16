@@ -1,1 +1,18 @@
+@font-face {
+  font-family: "Poppins", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap");
+}
 
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.App {
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+.App footer {
+  font-size: 13px;
+  margin: 10px 0;
+}
