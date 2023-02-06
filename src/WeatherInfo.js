@@ -4,6 +4,7 @@ import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherInfo(props) {
+  console.log(props.data);
   return (
     <div className="WeatherInfo">
       <h1>{props.data.city}</h1>
@@ -14,7 +15,7 @@ export default function WeatherInfo(props) {
       </ul>
       <WeatherIcon code={props.data.icon} size={56} />
 
-      <span className="temperature">{props.data.main.temp}</span>
+      <span className="temperature">{props.data.temperature}</span>
       <span className="unit">°F</span>
 
       <div className="container px-4 text-center">
@@ -22,9 +23,7 @@ export default function WeatherInfo(props) {
           <div className="col">
             <div className="information-box">
               <div className="p-3">Description</div>
-              <p className="text-capitalize">
-                {props.data.weather.description}
-              </p>
+              <p className="text-capitalize">{props.data.description}</p>
             </div>
           </div>
         </div>
@@ -33,14 +32,14 @@ export default function WeatherInfo(props) {
           <div className="col">
             <div className="information-box">
               <div className="p-3">Humidity</div>
-              <p>{props.data.main.humidity}%</p>
+              <p>{props.data.humidity}%</p>
             </div>
           </div>
 
           <div className="col">
             <div className="information-box">
               <div className="p-3">Wind Speed</div>
-              <p>{props.data.wind.speed} mph</p>
+              <p>{props.data.wind} mph</p>
             </div>
           </div>
         </div>
