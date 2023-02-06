@@ -7,26 +7,27 @@ import "./Weather.css";
 export default function Weather(prop) {
   const [city, setCity] = useState(prop.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
+
   function handleResponse(response) {
     console.log(response.data);
     setWeatherData({
       ready: true,
-      temperature: Math.round(response.data.temperature.current),
+      coordinates: response.data.coord,
+      temperature: Math.round(response.data.main.temp),
       wind: Math.round(response.data.wind.speed),
       city: response.data.city,
-      date: new Date(response.data.time * 1000),
-      humidity: response.data.temperature.humidity,
-      description: response.data.condition.description,
-      feels_like: Math.round(response.data.temperature.feels_like),
-      icon: response.data.condition.icon,
-      icon_url: response.data.condition.icon_url,
+      date: new Date(response.data.dt * 1000),
+      humidity: response.data.main.humidity,
+      description: response.data.weather.description,
+      icon: response.data.weather.icon,
     });
   }
 
   function search() {
-    const apiKey = "a2b23253o6fc64ee4f6fffd00bcta52e";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=imperial`;
+    const apiKey = "6295b66f26653cb51fb2d0cbfa59847f";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
     axios.get(apiUrl).then(handleResponse);
+    console.log(apiUrl);
   }
 
   function handleSubmit(event) {
@@ -59,7 +60,7 @@ export default function Weather(prop) {
           </div>
         </form>
         <WeatherInfo data={weatherData} />
-        <WeatherForecast data={weatherData} />
+        <WeatherForecast city={weatherData.city} />
       </div>
     );
   } else {
